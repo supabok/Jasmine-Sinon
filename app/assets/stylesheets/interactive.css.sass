@@ -1,0 +1,27 @@
+// Place all the styles related to the interactive controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$def_family: "Droid Sans", Arial, Times New Roman
+$ui-sans: segoe UI, Lucida Sans, Lucida Grande, Lucida Sans Unicode, sans-serif
+$left-font: "Droid Sans"
+
+/** Style Text Large Red *****/
+@mixin styledRed()
+  color: #60212a
+  display: inline
+  position: relative
+  text-transform: uppercase
+
+h1
+  color: #fff
+  font-size: 12px
+  font-family: $def_family
+
+.right
+  float: right
+
+.left
+  float: left
+  font-size: 24px
+  font-family: $left-font
+  @include styledRed
