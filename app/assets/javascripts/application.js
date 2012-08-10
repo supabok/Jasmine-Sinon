@@ -13,6 +13,7 @@
 //= require ./lib/jquery-1.7.2.min
 //= require ./lib/underscore-min
 //= require ./lib/backbone-min
+//= require_tree ./views/
 //= require_tree ./models/
 //= require_tree .
 
@@ -20,10 +21,10 @@ $(document).ready(function(){
     var websockets_support = !!window.WebSocket;
     console.log(websockets_support+' do we support websockets?!');
 
-    var mapHolder = Raphael("mapHolder", 903, 1200),
+    var mapHolder = Raphael("mapHolder", 903, 600),
         map = mapHolder.image("../assets/namerica.png", 10, 10, 903, 573),
-        targets = mapHolder.set(),//,
-        collection;// = new MapCollection();
+        targets = mapHolder.set(),
+        collection;
 
     var mapData = [
         {x:300, y:100, diam: 20},
@@ -67,15 +68,26 @@ $(document).ready(function(){
             if(len > 0) {
                 targets[len].animate({r:radius}, 500+(100*len), 'easeInOut')
             } else {
-                targets[len].animate({r:radius}, 1500+(100*len), 'easeInOut', function() {initLineGraph()})
+                targets[len].animate({r:radius}, 1500+(100*len), 'easeInOut', function() {
+                    initLineGraph();
+                    initViewDisplay();
+                })
             }
-
         }
     }
 
+    function initViewDisplay(){
+        var cityListView = new CityListView(collection)
+        _.each(collection.models, function(_id) {
+            cityListView.addRadius(_id)
+        });
+
+        $('#cityHolder').append(cityListView.render().el);
+
+    };
+
     function initLineGraph(){
         console.log('init graph would be here')
-        collection.models[5].set({'title':''})
     }
 
     createMapCollection();

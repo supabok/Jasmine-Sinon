@@ -19,6 +19,7 @@ src_files:
 
   - assets/lib/*.js
   - assets/models/*.js
+  - assets/views/*.js
   - assets/collection/*.js
   - assets/application.js
 
