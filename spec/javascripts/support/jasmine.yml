@@ -14,8 +14,12 @@ src_files:
   - spec/javascripts/support/sinon-1.4.2.js
   #- spec/javascripts/support/jasmine-sinon.js
   - spec/javascripts/support/jasmine-jquery.js
+  - spec/javascripts/fixtures/*.js
+  - spec/javascripts/helpers/*.js
+
   - assets/lib/*.js
   - assets/models/*.js
+  - assets/collection/*.js
   - assets/application.js
 
 # stylesheets

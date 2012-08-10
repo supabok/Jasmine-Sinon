@@ -32,7 +32,7 @@ describe('Radius model', function() {//this spec aims to test common model tasks
     })
 
     //on model created with params
-    describe('when instantiated', function() {
+    describe('instantiation', function() {
         it('should contain values for x attribute', function() {
             expect(this.radius.get('x')).toEqual(1);
         });
@@ -48,7 +48,7 @@ describe('Radius model', function() {//this spec aims to test common model tasks
     });
 
     //check default model values i.e. no params passed in
-    describe('when no attributes passed in', function() {
+    describe('attributes', function() {
 
         it('should have y default value of 0', function() {
             expect(this.emptyRadius.get('y')).toEqual(0);
@@ -71,7 +71,7 @@ describe('Radius model', function() {//this spec aims to test common model tasks
     })
 
     //url & id checks
-    describe("url", function() {
+    describe("URL", function() {
 
         it("should return the collection URL", function() {
             expect(this.radius.url()).toEqual("/collection");
@@ -115,9 +115,53 @@ describe('Radius model', function() {//this spec aims to test common model tasks
             this.radius.save({"title":"abc", "y":""});
 
             expect(this.eventSpy.calledWith(this.radius, "cannot have empty Y value")).toBe(true);
-            expect(this.eventSpy.calledTwice).toBeTruthy();
+            expect(this.eventSpy.calledOnce).toBeTruthy();
 
         })
 
+    })
+
+    describe("when saving", function() {
+        beforeEach(function() {
+            this.server = sinon.fakeServer.create();//fake the server
+            this.responseBody = '{"description":null,"id":3,"title":"Hello","x":20,"y":10,"diam":5}';
+            this.server.respondWith(
+                "POST",
+                "/radius",
+                [
+                    200,
+                    {"Content-Type": "application/json"},
+                    this.responseBody
+                ]
+            );
+            //set url for radius model
+            this.radius.url = "/radius";
+            //set spy to track events from radius
+            this.eventSpy = sinon.spy();
+        });
+
+        afterEach(function() {
+            this.server.restore();
+            this.eventSpy = null;
+        });
+
+        it("should make a save request to server", function() {
+            this.radius.save();
+
+            expect(this.server.requests[0].method).toEqual("POST");
+            expect(this.server.requests[0].url).toEqual("/radius");
+            expect(JSON.parse(this.server.requests[0].requestBody)).toEqual(this.radius.attributes);
+        })
+
+        it("should fire a change event and provide returned radius model", function() {
+            this.radius.bind("change", this.eventSpy);
+            this.radius.save();
+            this.server.respond();
+
+            expect(this.eventSpy.calledOnce).toBeTruthy();//check that eventSpy has actually been triggered by change evt
+            expect(this.eventSpy.getCall(0).args[0].constructor).toBe(RadiusModel);//check object returned is actually a model
+            //check that the object returned matches the response body set - i.e. has actually been saved
+            expect(this.eventSpy.getCall(0).args[0].attributes).toEqual(JSON.parse(this.responseBody));
+        });
     })
 });

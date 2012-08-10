@@ -40,5 +40,6 @@ gem 'backbone-rails'
 
 group :development, :test do
   gem 'jasmine'
+  gem 'guard-jasmine'
   #gem 'jasmine-sinon-rails', '~> 1.3.2.1'
 end
