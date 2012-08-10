@@ -7,6 +7,10 @@ var CityListView = Backbone.View.extend({
     },
 
     render: function() {
+        var _this = this;
+        _.each(this.collection.models, function(_id) {
+            _this.addRadius(_id)
+        });
         return this;
     },
 
