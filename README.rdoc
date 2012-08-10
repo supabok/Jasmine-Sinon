@@ -1,3 +1,14 @@
 == Jasmine+Sinon Javascript Testing with Backbone structure
 
 Testing backbone.js methods and classes using Sinon matchers and Jasmine integration
+Much of this sample is based on this great article:
+http://tinnedfruit.com/2011/03/03/testing-backbone-apps-with-jasmine-sinon.html
+
+The source code for that article can be found here:
+https://github.com/froots/backbone-jasmine-examples/tree/master/spec/javascripts
+
+Sinon Documentation:
+http://sinonjs.org/docs/#sinonspy
+
+Another take on JS testing with Jasmine:
+http://blog.bandzarewicz.com/blog/2012/03/08/backbone-dot-js-tdd-with-jasmine-part-one-the-model/
