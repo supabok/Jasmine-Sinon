@@ -1,4 +1,4 @@
-== Jasmine+Sinon Javascript Testing with Backbone structure
+== Javascript Testing with Backbone, Sinon and Jasmine
 
 Testing backbone.js methods and classes using Sinon matchers and Jasmine integration
 Much of this sample is based on this great article:
