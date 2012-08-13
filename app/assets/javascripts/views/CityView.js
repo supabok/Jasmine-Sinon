@@ -1,9 +1,12 @@
 var CityView = Backbone.View.extend({
-
+    template:'',
     tagName: "li",
 
     initialize: function(options) {
-        this.template = _.template("x=<%= x %>, y=<%= y %>, diam=<%= diam %>")//Handlebars.compile(options.template || "");
+        //define template structure
+        var source   = "<span>x={{x}}, y={{y}}, diam={{diam}}</span>";
+        //compile template using Handlebars
+        this.template = Handlebars.compile(source);
     },
 
     events: {

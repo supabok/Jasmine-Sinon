@@ -3,14 +3,14 @@ var CityListView = Backbone.View.extend({
     className: "cities",
 
     initialize: function(_coll) {
-        this.collection = _coll;
-    },
-
-    render: function() {
         var _this = this;
+        this.collection = _coll;
         _.each(this.collection.models, function(_id) {
             _this.addRadius(_id)
         });
+    },
+
+    render: function() {
         return this;
     },
 
