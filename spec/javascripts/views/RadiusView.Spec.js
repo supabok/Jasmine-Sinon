@@ -18,7 +18,7 @@ describe("CityListView", function() {
     })
 
     describe("Instantiation", function() {
-//
+
         it("should create a list element", function() {
             expect(this.view.el.nodeName).toEqual("UL");
         });
@@ -45,6 +45,7 @@ describe("CityListView", function() {
             this.city1 = new Backbone.Model({x:1,y:2,diam:3});
             this.city2 = new Backbone.Model({x:41,y:5,diam:6});
             this.city3 = new Backbone.Model({x:7,y:8,diam:9});
+
             //create dummy collection
             this.collection = new Backbone.Collection();
             this.collection.add(this.city1);
@@ -103,7 +104,7 @@ describe("CityListView", function() {
 
             it("produces the correct HTML", function() {
                 this.view.render();
-                expect(this.view.el.innerHTML).toEqual('<span id="spanText">x=1, y=123, diam=2</span>');
+                expect(this.view.el.innerHTML).toEqual('<span id="spanText">x=1, y=123, diam=2</span><a href="#">123</a>');
             });
 
         });
@@ -121,6 +122,27 @@ describe("CityListView", function() {
             })
         })
 
+        describe("Events", function() {
+
+            describe("when link clicked, event dispatched", function() {
+
+                beforeEach(function() {
+                    this.view.render();
+                    this.li = $(this.view.el);
+                    this.li.find('a').trigger('click');
+                });
+
+                it(" and shows clicked text", function() {
+                    expect(this.li.find('a')).toHaveText('-i have been clicked');
+                });
+
+                it(" and text color changed", function() {
+                    expect(this.li.find('a')).toHaveCss({color:'rgb(255, 238, 204)'});
+                    //check css value explicitly-n.b. don't really need this
+                    expect(this.li.find('a').css('color')).toContain('rgb(255, 238, 204)');
+                });
+            });
+        });
     });
 
 });
