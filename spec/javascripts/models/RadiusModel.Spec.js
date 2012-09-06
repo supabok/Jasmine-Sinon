@@ -1,4 +1,5 @@
-describe('Radius model', function() {//this spec aims to test common model tasks – instantiation, default values, URLs and validation.
+//this spec aims to test common model tasks – instantiation, default values, URLs and validation.
+describe('Radius model', function() {
 
     var radius;
     var emptyRadius;
@@ -103,10 +104,11 @@ describe('Radius model', function() {//this spec aims to test common model tasks
             expect(this.eventSpy.calledOnce).toBeTruthy();
             expect(this.eventSpy.calledWith(this.radius, 'cannot have an empty title')).toBe(true);
 
-            //using sinon-rails
-            //expect(this.eventSpy).toHaveBeenCalledWith(this.radius, 'cannot have an empty title').toBe(false);
-            //expect(this.eventSpy).toHaveBeenCalled();
-            //expect(this.eventSpy).toHaveBeenCalledWith(this.radius, 'cannot have an empty title');
+            /** using sinon-rails
+                //expect(this.eventSpy).toHaveBeenCalledWith(this.radius, 'cannot have an empty title').toBe(false);
+                //expect(this.eventSpy).toHaveBeenCalled();
+                //expect(this.eventSpy).toHaveBeenCalledWith(this.radius, 'cannot have an empty title');
+             */
         });
 
         it("should not save when missing an attribute value", function() {

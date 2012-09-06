@@ -7,6 +7,7 @@ describe('Map Collection', function() {//
 
     describe("when instantiated with model literal", function() {
         beforeEach(function() {
+
             //set up a test model
             this.radStub = sinon.stub(window, "RadiusModel");
             this.model = new Backbone.Model({

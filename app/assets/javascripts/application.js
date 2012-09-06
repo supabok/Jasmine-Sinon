@@ -78,10 +78,6 @@ $(document).ready(function(){
 
     function initViewDisplay(){
         var cityListView = new CityListView(collection)
-//        _.each(collection.models, function(_id) {
-//            cityListView.addRadius(_id)
-//        });
-
         $('#cityHolder').append(cityListView.render().el);
 
     };
