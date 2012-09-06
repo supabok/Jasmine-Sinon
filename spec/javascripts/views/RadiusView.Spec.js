@@ -58,6 +58,8 @@ describe("CityListView", function() {
 
         afterEach(function() {
             window.CityView.restore();
+            this.cityViewStub = null;
+            this.cityViewRenderSpy = null;
         });
 
         it("should create a cityview for each city model", function() {
@@ -122,6 +124,8 @@ describe("CityListView", function() {
             })
         })
 
+        //we check dom dispatching events
+        //in this spec we check that the text is updated, css is added to a tag, and 'a' tag is modified
         describe("Events", function() {
 
             describe("when link clicked, event dispatched", function() {
@@ -130,6 +134,10 @@ describe("CityListView", function() {
                     this.view.render();
                     this.li = $(this.view.el);
                     this.li.find('a').trigger('click');
+                });
+
+                it(" and <a></a> tag is modified", function() {
+                    expect(this.li).toContainHtml('<a style="color: rgb(255, 238, 204);">-i have been clicked</a>');
                 });
 
                 it(" and shows clicked text", function() {

@@ -12,3 +12,9 @@ http://sinonjs.org/docs/#sinonspy
 
 Another take on JS testing with Jasmine:
 http://blog.bandzarewicz.com/blog/2012/03/08/backbone-dot-js-tdd-with-jasmine-part-one-the-model/
+
+Using Jasmine-Jquery to test dom elements in the View
+https://github.com/velesin/jasmine-jquery/
+
+Use Factories instead of Fixtures
+https://github.com/SupportBee/Backbone-Factory
