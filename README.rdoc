@@ -18,3 +18,14 @@ https://github.com/velesin/jasmine-jquery/
 
 Use Factories instead of Fixtures
 https://github.com/SupportBee/Backbone-Factory
+
+Jasmine Gem:
+https://github.com/pivotal/jasmine-gem
+`
+To run the jasmine server:
+rake jasmine
+
+Start Jasmine on a different port:
+rake jasmine JASMINE_PORT=1337
+
+Point your browser to localhost:1337
